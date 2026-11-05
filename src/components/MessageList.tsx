@@ -18,6 +18,21 @@ export function MessageList({ messages, busy }: { messages: ChatMessage[]; busy:
             <div className="message-body">
               {message.content || (busy && index === messages.length - 1 ? copy.thinking : "")}
             </div>
+            {message.sources && message.sources.length > 0 && (
+              <ul className="message-sources" aria-label={copy.sources}>
+                {message.sources.map((source) => (
+                  <li key={source.title}>
+                    {source.url ? (
+                      <a href={source.url} target="_blank" rel="noreferrer">
+                        {source.title}
+                      </a>
+                    ) : (
+                      source.title
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
       </ol>

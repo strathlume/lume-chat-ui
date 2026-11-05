@@ -134,6 +134,17 @@ body {
   border-radius: 4px;
 }
 
+.message-sources {
+  margin: 0.35rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.message-sources a {
+  color: var(--teal-dark);
+}
+
 .composer {
   display: flex;
   gap: 0.5rem;

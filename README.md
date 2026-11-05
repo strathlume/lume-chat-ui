@@ -38,7 +38,7 @@ Production builds need `VITE_ENTRA_TENANT_ID`, `VITE_ENTRA_CLIENT_ID` and `VITE_
 
 ## API
 
-The UI calls `POST /v1/chat/completions` on the LUME API with `stream: true` and reads the answer as server-sent events, in the OpenAI-compatible format. Any backend that speaks that format works with this UI.
+The UI calls `POST /v1/chat/completions` on the LUME API with `stream: true` and reads the answer as server-sent events, in the OpenAI-compatible format. Any backend that speaks that format works with this UI. LUME adds one field: the last chunk can carry `sources`, the knowledge sources behind the answer, and the UI lists them under it.
 
 ## Contributing
 

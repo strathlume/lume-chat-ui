@@ -28,7 +28,14 @@ export function ChatWindow({ client }: { client: ChatClient }) {
         });
 
       try {
-        await client.send(history, append, controller.signal);
+        const sources = await client.send(history, append, controller.signal);
+        if (sources.length > 0) {
+          setMessages((current) => {
+            const next = current.slice();
+            next[next.length - 1] = { ...next[next.length - 1], sources };
+            return next;
+          });
+        }
       } catch {
         if (!controller.signal.aborted) setFailed(true);
       } finally {

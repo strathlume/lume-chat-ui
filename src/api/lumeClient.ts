@@ -1,5 +1,5 @@
 import { takeEvents } from "./sse";
-import type { ChatClient, ChatMessage } from "./types";
+import type { ChatClient, ChatMessage, Source } from "./types";
 
 export interface LumeClientOptions {
   apiBase: string;
@@ -8,6 +8,8 @@ export interface LumeClientOptions {
 
 interface CompletionChunk {
   choices?: { delta?: { content?: string } }[];
+  /** LUME extension: the knowledge sources behind the answer, on the last chunk. */
+  sources?: Source[];
 }
 
 /** Streams answers from the LUME API (OpenAI-compatible chat completions). */
@@ -30,15 +32,17 @@ export function createLumeClient({ apiBase, headers }: LumeClientOptions): ChatC
 
       const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
       let buffer = "";
+      let sources: Source[] = [];
       for (;;) {
         const { value, done } = await reader.read();
-        if (done) return;
+        if (done) return sources;
         buffer += value;
         const { events, rest } = takeEvents(buffer);
         buffer = rest;
         for (const data of events) {
-          if (data === "[DONE]") return;
+          if (data === "[DONE]") return sources;
           const chunk = JSON.parse(data) as CompletionChunk;
+          if (chunk.sources) sources = chunk.sources;
           const text = chunk.choices?.[0]?.delta?.content;
           if (text) onDelta(text);
         }
