@@ -7,6 +7,8 @@ export interface LumeEnvironment {
   /** null: no backend, canned answers. */
   apiBase: string | null;
   auth: AuthMode;
+  /** LUME's MCP server, for staff who connect their own AI tools. */
+  mcpUrl: string;
 }
 
 export const environments: Record<LumeEnvName, LumeEnvironment> = {
@@ -14,16 +16,20 @@ export const environments: Record<LumeEnvName, LumeEnvironment> = {
     name: "production",
     apiBase: "https://api.strathlume.com",
     auth: "entra",
+    mcpUrl: "https://mcp.strathlume.com/mcp",
   },
   staging: {
     name: "staging",
     apiBase: "https://api-staging.strathlume.com",
     auth: "key",
+    mcpUrl: "https://mcp-staging.strathlume.com/mcp",
   },
   demo: {
     name: "demo",
     apiBase: null,
     auth: "none",
+    // The demo shows staff the production address.
+    mcpUrl: "https://mcp.strathlume.com/mcp",
   },
 };
 

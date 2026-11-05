@@ -61,6 +61,60 @@ body {
   border-bottom: 1px solid var(--line);
 }
 
+.header-button {
+  margin-left: auto;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.8rem;
+  background: transparent;
+  color: var(--teal-dark);
+  border: 1px solid var(--teal);
+}
+
+.header-button:hover {
+  background: var(--wash);
+}
+
+.tools-panel {
+  padding: 1rem 1.25rem;
+  background: var(--wash);
+  border-bottom: 1px solid var(--line);
+}
+
+.tools-panel h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+}
+
+.tools-url {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.tools-url code {
+  padding: 0.35rem 0.55rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.tools-note {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.link-button {
+  padding: 0;
+  background: none;
+  color: var(--teal-dark);
+  text-decoration: underline;
+}
+
+.link-button:hover {
+  background: none;
+}
+
 .app-main {
   flex: 1;
   display: flex;

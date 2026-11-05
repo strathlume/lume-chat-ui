@@ -13,5 +13,12 @@ export const copy = {
   sendFailed: "LUME could not answer just now. Try again in a moment.",
   demoBanner:
     "Public demo. Answers are canned and nothing you type leaves your browser. Strathlume staff use LUME at lume.strathlume.com.",
+  toolsButton: "Connect your AI tools",
+  toolsTitle: "Connect your own AI tools",
+  toolsBody: "LUME's tools also work from the AI assistant you already use, through MCP. Add this server to your MCP client:",
+  toolsCopy: "Copy",
+  toolsCopied: "Copied",
+  toolsNote: "Your client asks you to sign in with your Strathlume account. No VPN needed.",
+  close: "Close",
   footer: "LUME can be wrong. Check anything that affects a customer.",
 };

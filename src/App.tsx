@@ -1,10 +1,11 @@
 import type { IPublicClientApplication } from "@azure/msal-browser";
 import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { createClient } from "./api/createClient";
 import { apiScopes } from "./auth/msal";
 import { ChatWindow } from "./components/ChatWindow";
 import { SignIn } from "./components/SignIn";
+import { ToolsPanel } from "./components/ToolsPanel";
 import type { LumeEnvironment } from "./config/environments";
 import { copy } from "./copy";
 
@@ -15,6 +16,7 @@ interface AppProps {
 
 export function App({ env, msal }: AppProps) {
   const client = useMemo(() => createClient(env, msal), [env, msal]);
+  const [toolsOpen, setToolsOpen] = useState(false);
   const chat = <ChatWindow client={client} />;
 
   return (
@@ -22,8 +24,12 @@ export function App({ env, msal }: AppProps) {
       <header className="app-header">
         <span className="brand">LUME</span>
         {env.name !== "production" && <span className="env-badge">{env.name}</span>}
+        <button type="button" className="header-button" onClick={() => setToolsOpen((open) => !open)}>
+          {copy.toolsButton}
+        </button>
       </header>
       {env.name === "demo" && <p className="demo-banner">{copy.demoBanner}</p>}
+      {toolsOpen && <ToolsPanel mcpUrl={env.mcpUrl} onClose={() => setToolsOpen(false)} />}
       <main className="app-main">
         {env.auth === "entra" ? (
           <>
