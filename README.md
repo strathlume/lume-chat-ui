@@ -2,7 +2,7 @@
 
 The chat front end for LUME, the assistant Strathlume staff use for questions on customer accounts, tariffs and field maintenance.
 
-We build LUME in-house and publish this front end as open source. It is a plain Vite, React and TypeScript app. It talks to the LUME API only, never to a model directly, so it carries no model keys and no prompts.
+We build LUME in-house and publish this front end as open source. How and why we built it: [How we built LUME](https://strathlume.com/blog/how-we-built-lume). It is a plain Vite, React and TypeScript app. It talks to the LUME API only, never to a model directly, so it carries no model keys and no prompts.
 
 ## Run it
 
