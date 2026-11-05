@@ -3,14 +3,23 @@ import type { ChatMessage } from "../api/types";
 import { copy } from "../copy";
 
 export function MessageList({ messages, busy }: { messages: ChatMessage[]; busy: boolean }) {
-  const end = useRef<HTMLDivElement>(null);
+  const container = useRef<HTMLDivElement>(null);
+  const following = useRef(true);
 
+  // Follow the answer only while the reader is at the bottom, and jump there directly.
+  // Smooth scrolling on every streamed word made the view jump.
   useEffect(() => {
-    end.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    const element = container.current;
+    if (element && following.current) element.scrollTop = element.scrollHeight;
   }, [messages]);
 
+  const onScroll = () => {
+    const element = container.current;
+    if (element) following.current = element.scrollHeight - element.scrollTop - element.clientHeight < 48;
+  };
+
   return (
-    <div className="messages">
+    <div className="messages" ref={container} onScroll={onScroll}>
       <ol aria-live="polite">
         {messages.map((message, index) => (
           <li key={index} className={`message message-${message.role}`}>
@@ -36,7 +45,6 @@ export function MessageList({ messages, busy }: { messages: ChatMessage[]; busy:
           </li>
         ))}
       </ol>
-      <div ref={end} />
     </div>
   );
 }
