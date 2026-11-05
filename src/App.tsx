@@ -23,6 +23,7 @@ export function App({ env, msal }: AppProps) {
         <span className="brand">LUME</span>
         {env.name !== "production" && <span className="env-badge">{env.name}</span>}
       </header>
+      {env.name === "demo" && <p className="demo-banner">{copy.demoBanner}</p>}
       <main className="app-main">
         {env.auth === "entra" ? (
           <>

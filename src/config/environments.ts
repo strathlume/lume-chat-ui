@@ -1,10 +1,11 @@
-export type LumeEnvName = "production" | "staging";
+export type LumeEnvName = "production" | "staging" | "demo";
 
-export type AuthMode = "entra" | "key";
+export type AuthMode = "entra" | "key" | "none";
 
 export interface LumeEnvironment {
   name: LumeEnvName;
-  apiBase: string;
+  /** null: no backend, canned answers. */
+  apiBase: string | null;
   auth: AuthMode;
 }
 
@@ -18,6 +19,11 @@ export const environments: Record<LumeEnvName, LumeEnvironment> = {
     name: "staging",
     apiBase: "https://api-staging.strathlume.com",
     auth: "key",
+  },
+  demo: {
+    name: "demo",
+    apiBase: null,
+    auth: "none",
   },
 };
 

@@ -10,5 +10,7 @@ export const copy = {
   you: "You",
   thinking: "Thinking...",
   sendFailed: "LUME could not answer just now. Try again in a moment.",
+  demoBanner:
+    "Public demo. Answers are canned and nothing you type leaves your browser. Strathlume staff use LUME at lume.strathlume.com.",
   footer: "LUME can be wrong. Check anything that affects a customer.",
 };

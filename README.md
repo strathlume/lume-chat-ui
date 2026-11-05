@@ -32,6 +32,7 @@ npm run build
 | --- | --- | --- |
 | `production` | LUME API | Entra ID sign-in, the UI sends the access token |
 | `staging` | LUME staging API | API key, for local work only |
+| `demo` | none, canned answers | none, used by the public demo site |
 
 Production builds need `VITE_ENTRA_TENANT_ID`, `VITE_ENTRA_CLIENT_ID` and `VITE_ENTRA_API_SCOPE`. Only Strathlume accounts can sign in.
 
