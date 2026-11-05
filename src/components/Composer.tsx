@@ -23,7 +23,8 @@ export function Composer({ busy, onSend, onStop }: ComposerProps) {
   };
 
   const onKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === "Enter") {
+    // Enter sends, Shift+Enter adds a new line. Leave Enter alone while an IME is composing.
+    if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing) {
       event.preventDefault();
       submit();
     }
